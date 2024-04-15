@@ -46,8 +46,7 @@ $ python3 manage.py runserver
 - Track the own, restaurant and customer location location
 
 ## Illustrations
-![Alt text]()
-![Alt text]()
-![Alt text]()
-![Alt text]()
+![Alt text](/pics/cart.png?raw=true)
+![Alt text](/pics/login.png?raw=true)
+![Alt text](/pics/signup.png?raw=true)
 
