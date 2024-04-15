@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<script src="https://api.tiles.mapbox.com/mapbox-gl-js/v2.2.0/mapbox-gl.js"></script>
+	<link href="https://api.tiles.mapbox.com/mapbox-gl-js/v2.2.0/mapbox-gl.css" rel="stylesheet" />
+	<script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.7.0/mapbox-gl-geocoder.min.js"></script>
+	<link rel="stylesheet"
+		href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.7.0/mapbox-gl-geocoder.css"
+		type="text/css" />
+		{% load static %}
+		<script type="text/javascript" src="{% static 'js/findlocation.js' %}"></script>
+</head>
+
+<body>
+	<div class="container-fluid">
+		<!-- <div class="row no-gutter"> -->
+			<!-- The image half -->
+			<!-- <div class="col-md-6 d-none d-md-flex bg-image">
+				<img src="media/images/9d5037c45218492782e9.jpg" />
+			</div> -->
+
+
+			<!-- The content half -->
+			<!-- <div class="col-md-6 "> -->
+				<div class="login d-flex align-items-center py-5">
+
+					<!-- Demo content-->
+					<div class="container">
+						<div class="row">
+							<div class="col-lg-10 col-xl-7 mx-auto">
+								<h3 class="display-4">FOODKART</h3>
+								<p class="text-muted mb-4">SIGN UP</p>
+		<form method="POST" name='my_form'>
+			{% csrf_token %}
+			{{ form.non_field_errors }}
+			{{ form.errors }}
+
+			<div class="form-group">
+				{{form.Registration_number.label_tag}} {{form.Registration_number}}
+			</div>
+			<div class="form-group">
+				{{form.Restaurant_name.label_tag}} {{form.Restaurant_name}}
+			</div>
+			<div class="form-group">
+				{{form.Owner.label_tag}} {{form.Owner}}
+			</div>
+			<div class="form-group">
+				{{form.email.label_tag}} {{form.email}}
+			</div>
+			<div class="form-group">
+				{{form.Mobile.label_tag}} {{form.Mobile}}
+			</div>
+			<button id='locate'>Find Me</button>
+			<div class="form-group">
+				{{form.Longitude.label_tag}} {{form.Longitude}}
+			</div>
+			<div class="form-group">
+				{{form.Latitude.label_tag}} {{form.Latitude}}
+			</div>
+			<div id="map" style='width: 400px; height: 300px;'></div>
+			<div class="form-group">
+				{{form.Building.label_tag}} {{form.Building}}
+			</div>
+			<div class="form-group">
+				{{form.Floor.label_tag}} {{form.Floor}}
+			</div>
+			<div class="form-group">
+				{{form.City.label_tag}} {{form.City}}
+			</div>
+			<div class="form-group">
+				{{form.State.label_tag}} {{form.State}}
+			</div>
+			<div class="form-group">
+				{{form.Pin.label_tag}} {{form.Pin}}
+			</div>
+			<div class="form-group">
+				{{form.username.label_tag}} {{form.username}}
+			</div>
+			<div class="form-group">
+				{{form.password1.label_tag}} {{form.password1}}
+			</div>
+			<div class="form-group">
+				{{form.password2.label_tag}} {{form.password2}}
+			</div>
+			<button class="btn btn-primary" type="submit">Register</button>
+		</form>
+	</div>
+	</div>
+	</div><!-- End -->
+
+	</div>
+	</div><!-- End -->
+
+	</div>
+	<!-- </div> -->
+
+	<script type="text/javascript">
+		function geoFindMe() {
+
+				function showPosition(position){
+					mapboxgl.accessToken = 'pk.eyJ1IjoieWFzaDQ1NTYiLCJhIjoiY2tvaG9hbXdnMTFpYzJub2MxOXJ5emxyNyJ9.EWWBTTl5gYAZ_HRXhoSEew';
+					var map = new mapboxgl.Map({
+							container: 'map', // Container ID
+						style: 'mapbox://styles/mapbox/streets-v11', // Map style to use
+						center: [position.coords.longitude, position.coords.latitude], // Starting position [lng, lat]
+						zoom: 12 // Starting zoom level
+					});
+
+					var marker = new mapboxgl.Marker() // Initialize a new marker
+						.setLngLat([position.coords.longitude, position.coords.latitude]) // Marker [lng, lat] coordinates
+						.addTo(map);
+				}
+				// const status = document.querySelector('#status');
+				// const mapLink = document.querySelector('#map-link');
+
+				// mapLink.href = '';
+				// mapLink.textContent = '';
+				function success(position) {
+					document.my_form.Latitude.value = position.coords.latitude;
+					document.my_form.Longitude.value = position.coords.longitude;
+					showPosition(position)
+					// status.textContent = '';
+					// mapLink.href = `https://www.openstreetmap.org/#map=18/${latitude}/${longitude}`;
+					// mapLink.textContent = `Latitude: ${latitude} °, Longitude: ${longitude} °`;
+				}
+
+				function error() {
+					status.textContent = 'Unable to retrieve your location';
+				}
+
+				if (!navigator.geolocation) {
+					status.textContent = 'Geolocation is not supported by your browser';
+				} else {
+					status.textContent = 'Locating…';
+					navigator.geolocation.getCurrentPosition(success, error);
+				}
+
+			}
+			document.querySelector('#locate').addEventListener('click', geoFindMe);
+	</script>
+
+</body>
+</html>
