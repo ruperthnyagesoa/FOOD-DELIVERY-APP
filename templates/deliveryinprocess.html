@@ -1,0 +1,35 @@
+{% load static %}
+<html>
+	<head>
+
+	</style>
+	<title>order list</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+		integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+	</head>
+<body>
+	<div class="text-center"><h2> Order Details</h2></div>
+	{{ user.id|json_script:"user_id" }}
+	{{ orderid|json_script:"orderid" }}
+	<div class="list-group">
+	<a href="#" id='address' class="list-group-item list-group-item-action"></a>
+	<a href="#" id='cust_name' class="list-group-item list-group-item-action disabled"></a>
+	<a href="#" id='curr_status' class="list-group-item list-group-item-action disabled"></a>
+	</div>
+	<button id='pickup' onclick="PickupOrder()" class="btn btn-info"> Pick Up</button>
+	<button id='deliver' onclick="Delivered()" class="btn btn-success"> Delivered</button>
+	<div id="map" style='width: 1300px; height: 700px; text-align: center;'></div>
+
+	<script src="https://www.gstatic.com/firebasejs/8.5.0/firebase-app.js"></script>
+	<meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
+	<link href="https://api.mapbox.com/mapbox-gl-js/v2.2.0/mapbox-gl.css" rel="stylesheet">
+	<script src="https://api.mapbox.com/mapbox-gl-js/v2.2.0/mapbox-gl.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/8.5.0/firebase-analytics.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/8.5.0/firebase-database.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/8.5.0/firebase-auth.js"></script>
+	<script src="{% static "js/firebase.js" %}"> </script>
+	<script src="{% static "js/deliveryinprocess.js" %}"></script>
+</body>
+</html>
