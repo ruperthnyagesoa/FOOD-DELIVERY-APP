@@ -1,0 +1,61 @@
+ .logo {
+            width: 20%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .logo img {
+            width: 50%;
+            border: 3px solid white;
+            border-radius: 50px;
+        }
+
+        .navbar {
+            background-color: black;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: sticky;
+            cursor: pointer;
+            top: 0%;
+        }
+
+        .nav-list {
+            display: flex;
+            width: 50%;
+            background-color: black;
+            align-items: center;
+        }
+
+        .nav-list li {
+            list-style: none;
+            padding: 26px 30px;
+        }
+
+        .nav-list li a {
+            text-decoration: none;
+            color: white;
+        }
+
+        .nav-list li a:hover {
+            color: red;
+        }
+
+        .right-nav {
+            width: 50%;
+
+            text-align: right;
+            padding-right: 20px;
+        }
+
+        #Search {
+            padding: 5px;
+            font-size: 18px;
+            border: 2px solid steelblue;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    #xyz{
+        color: blue;
+    }

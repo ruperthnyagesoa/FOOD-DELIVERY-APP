@@ -1,0 +1,41 @@
+{% load static %}
+<html>
+<head>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<script src='https://unpkg.com/@turf/turf/turf.min.js'></script>
+	<script src='https://api.mapbox.com/mapbox-gl-js/v1.11.0/mapbox-gl.js'></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head>
+<body>
+  <div class="text-center">
+    {% if msg %} {{msg}} {% endif %}
+  </div>
+{{ user.id|json_script:"user_id" }}
+	<table class="table table-hover table-dark">
+  <thead>
+    <tr>
+     <th>Order_id</th>
+     <th>Restaurant Name</th>
+     <th>Customer Name</th>
+      <th>Address</th>
+      <th>Radius</th>
+      <th>Take Order</th>
+    </tr>
+  </thead>
+</table>
+	 <table class="table table-hover table-dark" id="ex-table">
+		 <tbody>
+			 </tbody>
+
+</table>
+<a href="/logout">Logout</a>
+<input hidden id='add'/>
+<script src="https://www.gstatic.com/firebasejs/8.5.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.5.0/firebase-analytics.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.5.0/firebase-database.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.5.0/firebase-auth.js"></script>
+<script src="{% static "js/firebase.js" %}"> </script>
+<script src="{% static "js/homeDel.js" %}">
+</script>
+</body>
+</html>
